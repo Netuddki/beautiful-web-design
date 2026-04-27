@@ -1,74 +1,39 @@
-import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import VehicleFilters from "@/components/VehicleFilters";
-import VehicleCard from "@/components/VehicleCard";
-import { vehicles } from "@/data/vehicles";
-import { Car } from "lucide-react";
+import PainPoints from "@/components/PainPoints";
+import FeaturesGrid from "@/components/FeaturesGrid";
+import HowItWorks from "@/components/HowItWorks";
+import RequestFeature from "@/components/RequestFeature";
+import rentuaryLogo from "@/assets/rentuary-logo.png";
 
 const Index = () => {
-  const [activeType, setActiveType] = useState("all");
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filteredVehicles = useMemo(() => {
-    return vehicles.filter((v) => {
-      const typeMatch = activeType === "all" || v.type === activeType;
-      const catMatch = activeCategory === "all" || v.category.toLowerCase() === activeCategory.toLowerCase();
-      return typeMatch && catMatch;
-    });
-  }, [activeType, activeCategory]);
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <HeroSection />
+      <main>
+        <HeroSection />
+        <PainPoints />
+        <FeaturesGrid />
+        <HowItWorks />
+        <RequestFeature />
+      </main>
 
-      {/* Vehicle section */}
-      <section id="vehicles" className="container py-16 lg:py-20">
-        <VehicleFilters
-          activeType={activeType}
-          activeCategory={activeCategory}
-          onTypeChange={setActiveType}
-          onCategoryChange={setActiveCategory}
-        />
-
-        {/* Vehicle grid */}
-        <div className="mt-8">
-          {filteredVehicles.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredVehicles.map((vehicle, i) => (
-                <div
-                  key={vehicle.id}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <VehicleCard vehicle={vehicle} />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <Car className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
-              <p className="text-muted-foreground font-body text-lg">
-                Nincs találat a kiválasztott szűrőkkel.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-charcoal text-white/60 py-12">
+      <footer className="bg-charcoal text-white/60 py-12 border-t border-white/5">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Car className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <span className="font-heading font-bold text-white">AutoBérlés</span>
+              <img
+                src={rentuaryLogo}
+                alt="Rentuary logó"
+                width={32}
+                height={32}
+                loading="lazy"
+                className="w-8 h-8 object-contain"
+              />
+              <span className="font-heading font-bold text-white">Rentuary</span>
             </div>
             <p className="text-sm font-body">
-              © 2026 AutoBérlés. Minden jog fenntartva.
+              © 2026 Rentuary. Minden jog fenntartva.
             </p>
           </div>
         </div>

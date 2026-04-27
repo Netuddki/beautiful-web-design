@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Car, Menu, X, User } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import rentuaryLogo from "@/assets/rentuary-logo.png";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -11,11 +12,15 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <Car className="w-5 h-5 text-primary-foreground" />
-          </div>
-          <span className="font-heading font-bold text-lg text-white">
-            AutoBérlés
+          <img
+            src={rentuaryLogo}
+            alt="Rentuary logó"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain"
+          />
+          <span className="font-heading font-bold text-xl tracking-tight text-white">
+            Rentuary
           </span>
         </a>
 
